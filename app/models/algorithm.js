@@ -1,11 +1,9 @@
 import attr from 'ember-data/attr';
-import ModelBase from 'open-event-frontend/models/base';
 import { hasMany,belongsTo } from 'ember-data/relationships';
+import DS from 'ember-data';
 
-export default ModelBase.extend({
+export default DS.Model.extend({
+
   name: attr('string'),
-  comments: hasMany('comment'),
-  rateAvg: attr('number'),
-  rateCount: attr('number'),
-  hasRated: hasMany('user')
+  comments: hasMany('comment')
 })

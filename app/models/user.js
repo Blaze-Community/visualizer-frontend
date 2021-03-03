@@ -1,13 +1,14 @@
 import attr from 'ember-data/attr';
-import ModelBase from 'open-event-frontend/models/base';
+import DS from 'ember-data';
 
-export default ModelBase.extend({
+export default DS.Model.extend({
+
 
   /**
    * Attributes
    */
 
-  username : attr('string'),
+  userName : attr('string'),
   email    : attr('string'),
   password : attr('string'),
 

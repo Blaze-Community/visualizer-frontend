@@ -1,16 +1,14 @@
 import attr from 'ember-data/attr';
-import ModelBase from 'open-event-frontend/models/base';
 import { belongsTo } from 'ember-data/relationships';
+import DS from 'ember-data';
 
-export default ModelBase.extend({
+export default DS.Model.extend({
 
-  text: attr('string'),
-  createdAt: { type: Date, default: Date.now },
-  username: attr('string'),
-  rating: attr('number'),
+  commentBody: attr('string'),
+  isEdited: attr('boolean'),
 
   /**
    * Relationships
    */
-  author: belongsTo('user'),
+  userId: belongsTo('user',{ async: false }),
 });
