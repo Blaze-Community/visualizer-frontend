@@ -1,0 +1,33 @@
+<div class="wrap-login100">
+	<form class="login100-form needs-validation" {{on "submit" this.signup}}novalidate>
+		<span class="login100-form-title pb-4">
+			Signup To Continue
+		</span>
+		
+		<div class="wrap-input100 ">
+			<input class="input100" type="text" {{on "change" (fn this.update "userName")}}>
+			<span class="focus-input100"></span>
+			<span class="label-input100">Username</span>
+		</div>
+		
+		<div class="wrap-input100 ">
+			<input class="input100" type="text" {{on "change" (fn this.update "email")}}>
+			<span class="focus-input100"></span>
+			<span class="label-input100">Email</span>
+		</div>
+		
+		
+		<div class="wrap-input100 validate-input">
+			<input class="input100" type="password" {{on "change" (fn this.update "password")}}>
+			<span class="focus-input100"></span>
+			<span class="label-input100">Password</span>
+		</div>
+		<button class="login100-form-btn" type="submit" value="Signup">
+			Signup
+		</button>
+	</form>
+
+	<div class="login100-more" style="background-image: url('https://images.unsplash.com/photo-1596003906949-67221c37965c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1868&q=80');">
+	</div>
+</div>
+
