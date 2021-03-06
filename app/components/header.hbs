@@ -16,7 +16,9 @@
           {{else}}
           <li><a href="/login">Login</a></li>
           {{/if}}
+          {{#if (not session.isAuthenticated)}}
           <li><a href="/signup">Signup</a></li>
+          {{/if}}
 
         </ul>
       </nav>
