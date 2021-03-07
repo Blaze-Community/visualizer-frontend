@@ -7,7 +7,7 @@ export default class SignupController extends Controller {
     @tracked userName;
     @tracked email;
     @tracked password;
-
+    @service session;
 
     @action
     async signup(event){
@@ -18,7 +18,8 @@ export default class SignupController extends Controller {
             email: this.email,
             password: this.password,
         });
-        post.save();
+        await post.save();
+        await this.session.authenticate('authenticator:token', this.email, this.password);
     }
     
     @action
