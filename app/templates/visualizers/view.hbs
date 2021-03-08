@@ -30,7 +30,7 @@
                     {{else if (eq this.model.comments.length 1)}}
                       1 review
                      {{else}}
-                        this.model.comments.length reviews
+                        {{this.model.comments.length}} reviews
                   {{/if}}
                   <button class="btn btn-danger float-right">Leave a Review</button>
                 </li>
@@ -46,27 +46,27 @@
                          <span class="text-muted">
                             {{comment.commentBody}}
                           </span>
-                          {{#if (eq comment.userId.userName "akash2408")}}
+                          {{#if (eq comment.userId.id this.session.data.authenticated.user._id)}}
                           <div class="float-right">
-                            <a class="btn text-dark" data-toggle="collapse" data-target="#editComment"    aria-expanded="false" aria-controls="editComment">
+                            <a class="btn text-dark" data-toggle="collapse" data-target="#editComment" aria-expanded="false" aria-controls="editComment">
                               <i class="fas fa-pencil-alt"></i>
                              </a>
-                            <form id="deleteForm2" action="/Visualizers/{{this.model._id}}/comments/{{ comment._id }}?_method=DELETE" method="POST" class="float-right">
-                              <button class="delBtn btn text-dark">
+                            <form id="deleteForm2" class="float-right">
+                              <button {{action 'delete' comment.id}}class="delBtn btn text-dark">
                                 <i class="fas fa-trash-alt"></i>
                                 </button>
                             </form>
                           </div>
                           <div class="collapse" id="editComment">
                             <div class="card-body">
-                              <form class="needs-validation" action="/Visualizers/{{this.model._id}}/comments/{{ comment._id }}?_method=PUT" method="POST" novalidate>
+                              <form class="needs-validation" novalidate>
                                 <div class="form-group">
-                                  <textarea class="form-control" id="exampleFormControlTextarea1" name="comment[text]" rows="3" required>{{comment.commentBody}}</textarea>
+                                  <textarea class="form-control" id="exampleFormControlTextarea1" {{on "change" (fn this.updateValue "editComment")}} rows="3" required>{{comment.commentBody}}</textarea>
                                   <div class="invalid-feedback">
                                     You cannot leave this part blank.
                                   </div>
                                 </div>
-                                <button type="submit" class="btn btn-danger btn-sm">Edit Review</button>
+                                <button type="submit" {{action 'update' comment.id}} class="btn btn-danger btn-sm">Edit Review</button>
                                 <button type="reset" class="btn btn-secondary btn-sm float right">Reset</button>
                               </form>
                             </div>

@@ -2,6 +2,7 @@ import Base from 'ember-simple-auth/authenticators/base';
 
 export default Base.extend({
   async restore(data) {
+   console.log(data);
    let {token} = data;
    if(token){
     return data;}
@@ -21,7 +22,9 @@ export default Base.extend({
     });
     // console.log(response);
    if(response.ok)	
-     {return response.json();}
+     {  
+        return response.json();
+      }
    else
     { let error = await response.text();
       throw new Error(error)

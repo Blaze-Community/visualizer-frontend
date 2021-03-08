@@ -10,7 +10,7 @@ export default DS.RESTSerializer.extend(DS.EmbeddedRecordsMixin ,{
    payload = {comments:{
      userId:payload.userId
    }}
-   console.log(payload);
+   console.log("comment payload",payload);
    return this._super(store, primaryModelClass, payload, id, requestType) 
   }
 

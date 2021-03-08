@@ -6,6 +6,7 @@ export default DS.Model.extend({
 
   commentBody: attr('string'),
   isEdited: attr('boolean'),
+  algoId:   attr('string'),
 
   /**
    * Relationships
