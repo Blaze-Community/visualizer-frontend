@@ -40,7 +40,7 @@
                           <i class="fas fa-user"></i>
                             {{comment.userId.userName}}
                           <span class="float-right text-muted">
-                              <small>time</small>
+                              <small>{{timeago comment.createdAt}}</small>
                           </span>
                         </p>
                          <span class="text-muted">
@@ -48,7 +48,7 @@
                           </span>
                           {{#if (eq comment.userId.id this.session.data.authenticated.user._id)}}
                           <div class="float-right">
-                            <a class="btn text-dark" data-toggle="collapse" data-target="#editComment" aria-expanded="false" aria-controls="editComment">
+                            <a class="btn text-dark" data-toggle="collapse" data-target={{concat "#editComment" comment.id}} aria-expanded="false" aria-controls="editComment">
                               <i class="fas fa-pencil-alt"></i>
                              </a>
                             <form id="deleteForm2" class="float-right">
@@ -57,7 +57,7 @@
                                 </button>
                             </form>
                           </div>
-                          <div class="collapse" id="editComment">
+                          <div class="collapse" id={{concat "editComment" comment.id}} >
                             <div class="card-body">
                               <form class="needs-validation" novalidate>
                                 <div class="form-group">
