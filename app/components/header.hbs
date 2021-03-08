@@ -12,12 +12,14 @@
           <li><a href="/Visualizers">Home</a></li>
           <li><a href="/about">About</a></li>
           {{#if session.isAuthenticated}}
-          <li><a href="/Visualizers" {{on "click" this.logout}}>Logout</a></li>
+          <li><a href="" {{on "click" this.logout}}>Logout</a></li>
           {{else}}
           <li><a href="/login">Login</a></li>
           {{/if}}
           {{#if (not session.isAuthenticated)}}
           <li><a href="/signup">Signup</a></li>
+          {{else}}
+          <li><a href="#">{{this.session.data.authenticated.user.userName}}</a></li>
           {{/if}}
 
         </ul>
