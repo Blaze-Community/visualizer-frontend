@@ -3,16 +3,29 @@ import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 export default class VisualizersViewController extends Controller {
-@service session;
+  @service session;
+  @service flashMessages;
 
   @action
   submit (){
-    let newComment = this.store.createRecord('comment', {
-       commentBody: this.newComment,
-       algoId: this.model.id,
-       userId: this.store.peekRecord('user',this.session.data.authenticated.user._id)
-     });
-     newComment.save(); // 
+    if(!this.session.isAuthenticated)
+      { 
+        console.log("please login");
+        this.flashMessages.add({
+          message           : 'Please login to comment. If you have not registered yet, please create an account first. Thank you!',
+          type              : "danger",
+          preventDuplicates : true
+        });
+      }
+    else
+    {  
+      let newComment = this.store.createRecord('comment', {
+        commentBody: this.newComment,
+        algoId: this.model.id,
+        userId: this.store.peekRecord('user',this.session.data.authenticated.user._id)
+      });
+      newComment.save(); 
+    }// 
   }
 
   @action

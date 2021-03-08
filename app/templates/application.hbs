@@ -1,7 +1,14 @@
   <!-- ======= Header ======= -->
   <Header />
   <!-- End Header -->
+  
   {{outlet}}
   <!-- ======= Footer ======= -->
+  {{#each flashMessages.queue as |flash|}}
+    <h2>{{flash.message}}</h2>
+    <div class="alert alert-danger" role="alert">
+      This is a danger alert—check it out!
+    </div>
+  {{/each}}
   <Footer/>
   <!-- End Footer -->

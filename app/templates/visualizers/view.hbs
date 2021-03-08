@@ -19,74 +19,74 @@
 </section>
 
 <div class="container">
+  
 <h4 id="list-item-5">Review</h4>
-
-         <div class="card shadow-sm mt-4" id="comments">
-            <ul class="list-group list-group-flush">
-                <li id="commentItem" class="list-group-item list-group-item-light">
-                  This Visualizer has
-                {{#if (eq this.model.comments.length 0) }}
-                    no reviews.
-                    {{else if (eq this.model.comments.length 1)}}
-                      1 review
-                     {{else}}
-                        {{this.model.comments.length}} reviews
+  <div class="card shadow-sm mt-4" id="comments">
+    <ul class="list-group list-group-flush">
+        <li id="commentItem" class="list-group-item list-group-item-light">
+          This Visualizer has
+        {{#if (eq this.model.comments.length 0) }}
+            no reviews.
+            {{else if (eq this.model.comments.length 1)}}
+              1 review
+              {{else}}
+                {{this.model.comments.length}} reviews
+          {{/if}}
+          <button class="btn btn-danger float-right">Leave a Review</button>
+        </li>
+        {{#each this.model.comments as |comment| }}
+              <li class="list-group-item">
+                <p>
+                  <i class="fas fa-user"></i>
+                    {{comment.userId.userName}}
+                  <span class="float-right text-muted">
+                      <small>{{timeago comment.createdAt}}</small>
+                  </span>
+                </p>
+                  <span class="text-muted">
+                    {{comment.commentBody}}
+                  </span>
+                  {{#if (eq comment.userId.id this.session.data.authenticated.user._id)}}
+                  <div class="float-right">
+                    <a class="btn text-dark" data-toggle="collapse" data-target={{concat "#editComment" comment.id}} aria-expanded="false" aria-controls="editComment">
+                      <i class="fas fa-pencil-alt"></i>
+                      </a>
+                    <form id="deleteForm2" class="float-right">
+                      <button {{action 'delete' comment.id}}class="delBtn btn text-dark">
+                        <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </form>
+                  </div>
+                  <div class="collapse" id={{concat "editComment" comment.id}} >
+                    <div class="card-body">
+                      <form class="needs-validation" novalidate>
+                        <div class="form-group">
+                          <textarea class="form-control" id="exampleFormControlTextarea1" {{on "change" (fn this.updateValue "editComment")}} rows="3" required>{{comment.commentBody}}</textarea>
+                          <div class="invalid-feedback">
+                            You cannot leave this part blank.
+                          </div>
+                        </div>
+                        <button type="submit" {{action 'update' comment.id}} class="btn btn-danger btn-sm">Edit Review</button>
+                        <button type="reset" class="btn btn-secondary btn-sm float right">Reset</button>
+                      </form>
+                    </div>
+                  </div>
                   {{/if}}
-                  <button class="btn btn-danger float-right">Leave a Review</button>
-                </li>
-               {{#each this.model.comments as |comment| }}
-                      <li class="list-group-item">
-                        <p>
-                          <i class="fas fa-user"></i>
-                            {{comment.userId.userName}}
-                          <span class="float-right text-muted">
-                              <small>{{timeago comment.createdAt}}</small>
-                          </span>
-                        </p>
-                         <span class="text-muted">
-                            {{comment.commentBody}}
-                          </span>
-                          {{#if (eq comment.userId.id this.session.data.authenticated.user._id)}}
-                          <div class="float-right">
-                            <a class="btn text-dark" data-toggle="collapse" data-target={{concat "#editComment" comment.id}} aria-expanded="false" aria-controls="editComment">
-                              <i class="fas fa-pencil-alt"></i>
-                             </a>
-                            <form id="deleteForm2" class="float-right">
-                              <button {{action 'delete' comment.id}}class="delBtn btn text-dark">
-                                <i class="fas fa-trash-alt"></i>
-                                </button>
-                            </form>
-                          </div>
-                          <div class="collapse" id={{concat "editComment" comment.id}} >
-                            <div class="card-body">
-                              <form class="needs-validation" novalidate>
-                                <div class="form-group">
-                                  <textarea class="form-control" id="exampleFormControlTextarea1" {{on "change" (fn this.updateValue "editComment")}} rows="3" required>{{comment.commentBody}}</textarea>
-                                  <div class="invalid-feedback">
-                                    You cannot leave this part blank.
-                                  </div>
-                                </div>
-                                <button type="submit" {{action 'update' comment.id}} class="btn btn-danger btn-sm">Edit Review</button>
-                                <button type="reset" class="btn btn-secondary btn-sm float right">Reset</button>
-                              </form>
-                            </div>
-                          </div>
-                         {{/if}}
-                      </li>
-                  {{/each}}
-            </ul>
-          </div>
-                      <form class="needs-validation" method="POST" novalidate>
-                          <div class="form-group">
-                            <Textarea class="form-control" @id="exampleFormControlTextarea1" @value={{this.newComment}} rows="3" required/>
-                            <div class="invalid-feedback">
-                              You cannot leave this part blank.
-                            </div>
-                          </div>
+              </li>
+          {{/each}}
+    </ul>
+  </div>
+  <form class="needs-validation" method="POST" novalidate>
+      <div class="form-group">
+        <Textarea class="form-control" @id="exampleFormControlTextarea1" @value={{this.newComment}} rows="3" required/>
+        <div class="invalid-feedback">
+          You cannot leave this part blank.
+        </div>
+      </div>
 
-                          <button type="submit" {{action this.submit}}class="btn btn-danger btn-sm">Submit</button>
-                          <button type="reset" class="btn btn-secondary btn-sm float right">Reset</button>
-                        </form> 
+      <button type="submit" {{action this.submit}}class="btn btn-danger btn-sm">Submit</button>
+      <button type="reset" class="btn btn-secondary btn-sm float right">Reset</button>
+    </form> 
 </div>
 <script src="/assets/sort/{{this.model.name}}.js"></script>
 
