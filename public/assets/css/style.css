@@ -788,14 +788,10 @@ section {
 # Alert
 --------------------------------------------------------------*/
 .alert {
-  visibility: hidden;
-  width:25%;
+  max-width: 50%;
   text-align: center;
   position: fixed;
   bottom: 0;
   right: 0;
   margin-right: 20px;
-  }
-.alert.show {
-  visibility: visible;
   }

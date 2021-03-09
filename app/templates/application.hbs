@@ -5,10 +5,9 @@
   {{outlet}}
   <!-- ======= Footer ======= -->
   {{#each flashMessages.queue as |flash|}}
-    <h2>{{flash.message}}</h2>
-    <div class="alert alert-danger" role="alert">
-      This is a danger alert—check it out!
-    </div>
+  <div class={{concat "alert alert-" flash.type}} role="alert">
+      {{flash.message}}
+  </div>
   {{/each}}
   <Footer/>
   <!-- End Footer -->

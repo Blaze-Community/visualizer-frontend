@@ -3,6 +3,7 @@ import { inject as service } from '@ember/service';
 
 export default Visualizers.extend( {
   session: service(),
+  flashMessages: service(),
 
   pathForType(){
     return "comment";
@@ -22,6 +23,24 @@ export default Visualizers.extend( {
       : '';
 
     return this._super(...arguments) + queryString;
+  },
+
+  handleResponse(status, headers, payload) {                                                                                                                                                                                               
+   if(status === 200){
+      this.flashMessages.add({
+            message           : payload.message,
+            type              : "success",
+           preventDuplicates : true
+        });
+    }
+   else{
+           this.flashMessages.add({
+            message           : payload.error,
+            type              : "danger",
+           preventDuplicates : true
+        });
+   }                                                                                                                                                                                                                         
+    return this._super(...arguments);                                                                                                                                                                                                                                                                                                                                                                                                                        
   }
 
 });

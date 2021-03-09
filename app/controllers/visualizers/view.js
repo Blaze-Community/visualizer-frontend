@@ -7,10 +7,9 @@ export default class VisualizersViewController extends Controller {
   @service flashMessages;
 
   @action
-  submit (){
+  async submit (){
     if(!this.session.isAuthenticated)
       { 
-        console.log("please login");
         this.flashMessages.add({
           message           : 'Please login to comment. If you have not registered yet, please create an account first. Thank you!',
           type              : "danger",
@@ -24,8 +23,13 @@ export default class VisualizersViewController extends Controller {
         algoId: this.model.id,
         userId: this.store.peekRecord('user',this.session.data.authenticated.user._id)
       });
-      newComment.save(); 
-    }// 
+      await newComment.save().then((response) =>{
+                 console.log("message",response);
+         })
+         .catch((error) => {
+                console.log("error",error);
+         }) 
+    }
   }
 
   @action
