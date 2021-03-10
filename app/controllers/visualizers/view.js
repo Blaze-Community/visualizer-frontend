@@ -23,12 +23,9 @@ export default class VisualizersViewController extends Controller {
         algoId: this.model.id,
         userId: this.store.peekRecord('user',this.session.data.authenticated.user._id)
       });
-      await newComment.save().then((response) =>{
-                 console.log("message",response);
+      await newComment.save().then(() =>{
+                 window.location.reload(true);
          })
-         .catch((error) => {
-                console.log("error",error);
-         }) 
     }
   }
 
@@ -36,7 +33,9 @@ export default class VisualizersViewController extends Controller {
   update (commentId){
     const oldRecord = this.store.peekRecord('comment',commentId);
     oldRecord.commentBody = this.editComment;
-    oldRecord.save();
+    oldRecord.save().then(() =>{
+                 window.location.reload(true);
+         });
   }
   
   @action
