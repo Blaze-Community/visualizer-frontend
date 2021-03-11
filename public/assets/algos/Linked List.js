@@ -376,11 +376,11 @@ insertButton.addEventListener('click', (event) => {
 	    const textValue = insertInput.value;
 	    const textIndex = indexInput.value;
 	    if(textIndex > animationArray.length || textIndex < 0)
-	    	{ $('.alert').html(textIndex + " is an Invaild Index!");
-	    	  $('.alert').addClass('show');
+	    	{ $('.alert.algo').html(textIndex + " is an Invaild Index!");
+	    	  $('.alert.algo').addClass('show');
 	    	  setTimeout(function(){ 
-	    	  	$('.alert').removeClass('show');
-	    	  	$('.alert').html("");
+	    	  	$('.alert.algo').removeClass('show');
+	    	  	$('.alert.algo').html("");
 	    	  }, 2500);
 	    	}
 	    else {
@@ -389,11 +389,11 @@ insertButton.addEventListener('click', (event) => {
 		}
 	}
 	else {
-	$('.alert').html(process + " is in  progress!");
-	$('.alert').addClass('show');
+	$('.alert.algo').html(process + " is in  progress!");
+	$('.alert.algo').addClass('show');
 	setTimeout(function(){ 
-	    $('.alert').removeClass('show');
-	    $('.alert').html("");
+	    $('.alert.algo').removeClass('show');
+	    $('.alert.algo').html("");
 	}, 2500);
 	}
 	insertInput.value = "";
@@ -408,11 +408,11 @@ deleteButton.addEventListener('click', (event) => {
 	    event.preventDefault();
 	    const textValue = deleteInput.value;
 	    if(textValue > animationArray.length || textValue < 0)
-	    	{ $('.alert').html(textValue + " is an Invaild Index!");
-	    	  $('.alert').addClass('show');
+	    	{ $('.alert.algo').html(textValue + " is an Invaild Index!");
+	    	  $('.alert.algo').addClass('show');
 	    	  setTimeout(function(){ 
-	    	  	$('.alert').removeClass('show');
-	    	  	$('.alert').html("");
+	    	  	$('.alert.algo').removeClass('show');
+	    	  	$('.alert.algo').html("");
 	    	  }, 2500);
 	    	}
 	    else {
@@ -421,11 +421,11 @@ deleteButton.addEventListener('click', (event) => {
 		}
 	}
 	else {
-    	$('.alert').html(process + " is in  progress!");
-    	$('.alert').addClass('show');
+    	$('.alert.algo').html(process + " is in  progress!");
+    	$('.alert.algo').addClass('show');
     	setTimeout(function(){ 
-    	    $('.alert').removeClass('show');
-    	    $('.alert').html("");
+    	    $('.alert.algo').removeClass('show');
+    	    $('.alert.algo').html("");
     	}, 2500);		
 	}
 	deleteInput.value = "";
