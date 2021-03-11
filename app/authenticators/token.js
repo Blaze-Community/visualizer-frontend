@@ -11,7 +11,7 @@ export default Base.extend({
   },
 
   async authenticate(email,password) {
-   let response = await fetch('http://localhost:5000/api/signin',{
+   let response = await fetch('https://api-ds-visualizers.herokuapp.com/api/signin',{
     method:'POST',
     headers:{
        'Content-Type': 'application/json'
