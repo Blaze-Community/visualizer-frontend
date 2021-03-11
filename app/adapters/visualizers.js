@@ -2,6 +2,6 @@ import RESTAdapter from '@ember-data/adapter/json-api';
 
 export default class VisualizersAdapter extends RESTAdapter {
 
-  host= "http://localhost:5000";
+  host= "https://api-ds-visualizers.herokuapp.com";
   namespace= "api"
 }
