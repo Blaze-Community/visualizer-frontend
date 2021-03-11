@@ -1,8 +1,9 @@
   <!-- ======= Header ======= -->
   <Header />
   <!-- End Header -->
-  
+  <div class = "general-container">
   {{outlet}}
+  </div>
   <!-- ======= Footer ======= -->
   {{#each flashMessages.queue as |flash|}}
   <div class={{concat "alert alert-" flash.type}} role="alert">
