@@ -1,6 +1,9 @@
 import Base from 'ember-simple-auth/authenticators/base';
+import { inject as service } from '@ember/service';
 
 export default Base.extend({
+  flashMessages: service(),
+
   async restore(data) {
    console.log(data);
    let {token} = data;
@@ -20,14 +23,25 @@ export default Base.extend({
       user:{email,password}
       })
     });
-    // console.log(response);
    if(response.ok)	
-     {  
-        return response.json();
+     {   
+        let res = await response.json();
+        this.flashMessages.add({
+            message           : "Login Successfully!",
+            type              : "success",
+           preventDuplicates : true
+        });
+        return res;
       }
    else
-    { let error = await response.text();
-      throw new Error(error)
+    { 
+      let res = await response.json();
+      this.flashMessages.add({
+          message           : res.error,
+          type              : "danger",
+         preventDuplicates : true
+      });
+      throw new Error(res.error)
     }
   },
 
